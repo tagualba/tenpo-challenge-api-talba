@@ -1,0 +1,33 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: create
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    open-in-view: false
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://ec2-34-200-205-45.compute-1.amazonaws.com:5432/d7ia6eote76mub?user=ifmxcefwbmoyrp&password=6342c1501bf280b449dc6fdf4d4011bb257f7c416222808759bcb53ea57d7539
+    username: ifmxcefwbmoyrp
+    password: 6342c1501bf280b449dc6fdf4d4011bb257f7c416222808759bcb53ea57d7539
+
+jwt:
+  secret: LEKDLSKIEODPSOEIDK39
+
+regex:
+  email: ^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$
+  password: ^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=.])(?=\S+$).{8,}$
+
+percentage-service:
+  cache:
+    ttl: 1800000
+  read-timeout: 40
+  connection-timeout: 40
+  url: http://localhost:8080/tenpo/percentage
+
+resilience4j:
+  retry:
+    instances:
+      percentage:
+        maxRetryAttempts: 2
+        waitDuration: 1000
+        failAfterMaxAttempts: true
