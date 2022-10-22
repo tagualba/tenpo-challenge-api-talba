@@ -7,7 +7,7 @@ public class CalculateValidator extends Validators {
 
     public static void validateValues(Double valueA, Double valueB) throws ValidationException {
         String propertiesFailMessage = "";
-        if (valueA == null) {
+        if (valueA == null ) {
             propertiesFailMessage += missingFieldDescription("valueA");
         }
 

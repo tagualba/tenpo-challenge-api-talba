@@ -18,6 +18,8 @@ public class JwtUtil {
     @Value("${jwt.secret}")
     private String secret;
 
+    @Value("${jwt.ttl}")
+    private Long ttl;
     @PostConstruct
     protected void init() {
         secret = Base64.getEncoder().encodeToString(secret.getBytes());
@@ -26,7 +28,7 @@ public class JwtUtil {
     public String createApiToken(String email) {
         Map<String, Object> claims = Jwts.claims().setSubject(email);
         Date dateNow = new Date();
-        Date dateExpired = new Date(dateNow.getTime() + 3600000);
+        Date dateExpired = new Date(dateNow.getTime() + ttl);
 
         return Jwts.builder()
                    .setClaims(claims)

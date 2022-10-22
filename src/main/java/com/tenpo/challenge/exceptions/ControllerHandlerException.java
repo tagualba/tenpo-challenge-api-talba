@@ -47,6 +47,23 @@ public class ControllerHandlerException {
         return ResponseEntity.status(apiError.getStatus()).body(apiError);
     }
 
+    @ExceptionHandler(RandomPercentageClientException.class)
+    public HttpEntity<ApiError> handleRandomPercentageClientException(RandomPercentageClientException ex) {
+        ErrorCode errorCode = ex.getClientErrorCode();
+
+        ApiError apiError = ApiError.builder()
+                .error(errorCode.getName())
+                .errorCode(errorCode.getCode())
+                .message(ex.getMessage())
+                .status(errorCode.getHttpStatus().value())
+                .build();
+
+        log.error(String.format("Event: %s , %s %s", "handleRandomPercentageClientException", ex.getMessage(), ex));
+        log.error(String.format("Event: %s, apierror: %s", "handleRandomPercentageClientException", apiError));
+
+        return ResponseEntity.status(apiError.getStatus()).body(apiError);
+    }
+
     @ExceptionHandler(value = {Exception.class, RuntimeException.class})
     protected HttpEntity<ApiError> handleUnknownException(Exception ex) {
         ApiError apiError = ApiError.builder()

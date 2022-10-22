@@ -12,6 +12,7 @@ spring:
 
 jwt:
   secret: LEKDLSKIEODPSOEIDK39
+  ttl: 3600000
 
 regex:
   email: ^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$
@@ -31,3 +32,6 @@ resilience4j:
         maxRetryAttempts: 2
         waitDuration: 1000
         failAfterMaxAttempts: true
+
+history:
+  page-size: 10

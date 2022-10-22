@@ -9,9 +9,7 @@ import lombok.Data;
 public class AuditHistory {
     private Long id;
 
-    private Long userid;
-
-    private Operations operation;
+    private String operation;
 
     private String request;
 
