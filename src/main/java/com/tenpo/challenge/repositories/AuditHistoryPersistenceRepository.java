@@ -8,14 +8,11 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import java.awt.print.Pageable;
-import java.util.List;
-import java.util.Optional;
-
 @Repository
 public interface AuditHistoryPersistenceRepository extends JpaRepository<AuditHistoryPersistence, Long> {
 
     @Query("SELECT a FROM AuditHistoryPersistence a WHERE 1=1 "
             + " or (:operation is null or a.operation = :operation) ORDER BY id")
     Page<AuditHistoryPersistence> findAllOptionalOperationFilter(@Param("operation") String operation, PageRequest pageable);
+
 }

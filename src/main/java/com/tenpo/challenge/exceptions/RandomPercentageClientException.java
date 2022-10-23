@@ -24,4 +24,5 @@ public class RandomPercentageClientException extends Exception {
     public ErrorCode getClientErrorCode() {
         return clientErrorCode;
     }
+
 }

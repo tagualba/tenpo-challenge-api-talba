@@ -5,16 +5,20 @@ import com.tenpo.challenge.models.dtos.UserRequestDto;
 import com.tenpo.challenge.models.dtos.UserResponseDto;
 import com.tenpo.challenge.models.persistence.UserPersistence;
 import com.tenpo.challenge.utils.EncryptUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class UsersTranslator {
 
+    @Autowired
+    private EncryptUtil encryptUtil;
+
     public User toDomain(UserRequestDto requestDto){
         return User.builder()
                 .name(requestDto.getName())
                 .email(requestDto.getEmail())
-                .hashPassword(EncryptUtil.createHash(requestDto.getEmail(), requestDto.getPassword()))
+                .hashPassword(encryptUtil.createHash(requestDto.getEmail(), requestDto.getPassword()))
                 .build();
     }
 
@@ -29,6 +33,7 @@ public class UsersTranslator {
 
     public User toDomain(UserPersistence userPersistencePersistence){
         return User.builder()
+                .id(userPersistencePersistence.getId())
                 .name(userPersistencePersistence.getName())
                 .email(userPersistencePersistence.getEmail())
                 .hashPassword(userPersistencePersistence.getHashPassword())

@@ -37,6 +37,9 @@ public class UserService {
     @Autowired
     private JwtUtil jwtUtil;
 
+    @Autowired
+    private EncryptUtil encryptUtil;
+
     public UserResponseDto createUser(UserRequestDto userRequestDto) throws ValidationException, JsonProcessingException {
         userValidator.validateCreateUserRequestDto(userRequestDto);
         GlobalsUtil.setRequest(objectMapper.writeValueAsString(userRequestDto));
@@ -63,7 +66,7 @@ public class UserService {
         GlobalsUtil.setRequest(objectMapper.writeValueAsString(request));
 
         Optional<UserPersistence> userSaved = usersPersistenceRepository.findByEmail(request.getEmail());
-        if (!userSaved.isPresent() || !EncryptUtil.checkHash(request.getEmail(), request.getPassword(), userSaved.get().getHashPassword())) {
+        if (!userSaved.isPresent() || !encryptUtil.checkHash(request.getEmail(), request.getPassword(), userSaved.get().getHashPassword())) {
             throw new ValidationException(ErrorCode.COMBINATION_FAIL);
         }
 
@@ -78,7 +81,4 @@ public class UserService {
         return userPersistence;
     }
 
-    public Long getIdByToken(String token){
-        return usersPersistenceRepository.findByLastTokenApi(token).orElseThrow().getId();
-    }
 }

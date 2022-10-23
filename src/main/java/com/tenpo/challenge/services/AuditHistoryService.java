@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class AuditHistoryService {
+
     private static final Logger log = LoggerFactory.getLogger(AuditHistoryService.class);
 
     @Value("${history.page-size}")
@@ -41,15 +42,15 @@ public class AuditHistoryService {
         catch (Exception e){
             log.error(String.format("Event: saveOperation error saving - Mesagge: %s", e.getMessage()));
         }
-
     }
 
     public HistoryResponseDto getHistory(String opertion, Integer page){
 
-        PageRequest pageRequest = PageRequest.of(page == null ? 0 : page, pageSize);
+        PageRequest pageRequest = PageRequest.of(page == null ? 0 : page, pageSize == null ? 5 : pageSize);
 
         Page<AuditHistoryPersistence> historySaved = auditHistoryPersistenceRepository.findAllOptionalOperationFilter(opertion, pageRequest);
 
         return historyTranslator.getResponseDto(historySaved, pageRequest.getPageNumber());
     }
+
 }

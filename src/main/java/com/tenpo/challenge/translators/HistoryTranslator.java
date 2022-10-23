@@ -33,6 +33,7 @@ public class HistoryTranslator {
         return HistoryResponseDto.builder()
                 .history(new ArrayList<>())
                 .page(page)
+                .totalPages(reponse.getTotalPages())
                 .build();
     }
 

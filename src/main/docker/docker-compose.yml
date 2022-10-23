@@ -1,0 +1,36 @@
+version: '2'
+
+services:
+  app:
+    ports:
+      - "8080:8080"
+    image: 'docker-spring-boot-postgres:latest'
+    build:
+      context: .
+    container_name: app
+    depends_on:
+      - db
+    environment:
+      - DATASOURCE_PASS=compose-postgres
+      - DATASOURCE_URL=jdbc:postgresql://db:5432/compose-postgres
+      - DATASOURCE_USER=compose-postgres
+      - HISTORY_PAGE_SIZE=10
+      - JWT_SECRET=LEKDLSKIEODPSOEIDK39
+      - JWT_TTL=3600000
+      - PERCENTAGE_SERVICE_CACHE_TTL=1800000
+      - PERCENTAGE_SERVICE_CONNECTION_TIMEOUT=40
+      - PERCENTAGE_SERVICE_URL=http://app:8080/tenpo/percentage
+      - PERCENTAGE_SERVICE_READ_TIMEOUT=40
+      - REGEX_EMAIL=^[a-zA-Z0-9_!#$$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$$
+      - REGEX_PASS=^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$$%^&+=.])(?=\S+$$).{8,}$$
+      - RETRY_MAX_ATTEMPTS=2
+      - RETRY_WAIT_DURATION=1000
+
+  db:
+    ports:
+      - "5432:5432"
+    image: 'postgres:13.1-alpine'
+    container_name: db
+    environment:
+      - POSTGRES_USER=compose-postgres
+      - POSTGRES_PASSWORD=compose-postgres

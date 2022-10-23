@@ -11,6 +11,7 @@ import java.util.concurrent.TimeoutException;
 @RequestMapping(value = "/tenpo/percentage")
 @RestController
 public class MockRandomPercentageClientController {
+
     private static final Logger log = LoggerFactory.getLogger(MockRandomPercentageClientController.class);
 
     @GetMapping
@@ -28,6 +29,8 @@ public class MockRandomPercentageClientController {
             log.info("Event: getPercentage - TIMEOU_EXCEPTION");
             throw new TimeoutException();
         }
+
         return response;
     }
+
 }

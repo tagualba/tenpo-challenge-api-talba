@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class RandomPercentageRestClient implements RandomPercentageClient{
+
     private static final Logger logger = LoggerFactory.getLogger(RestTemplateHelper.class);
 
     @Value("${percentage-service.url}")
@@ -23,7 +24,8 @@ public class RandomPercentageRestClient implements RandomPercentageClient{
     @Cacheable("percentage-service")
     @Retry(name = "percentage")
     public Integer getPercentageNow() {
-        logger.info("Event: getPercentageNow - Init");
+        logger.info("Event: getPercentageNow - Execute");
         return restTemplateHelper.getForEntity(Integer.class, getPercentageUrl);
     }
+
 }

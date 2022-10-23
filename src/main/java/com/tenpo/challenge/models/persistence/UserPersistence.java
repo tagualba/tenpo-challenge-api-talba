@@ -29,4 +29,5 @@ public class UserPersistence {
 
     @Column(name = "last_token_api", nullable = false)
     private String lastTokenApi;
+
 }

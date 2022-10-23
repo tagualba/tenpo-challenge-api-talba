@@ -13,4 +13,5 @@ public class Globals {
         REQUEST = new ThreadLocal<>();
         RESPONSE = new ThreadLocal<>();
     }
+
 }

@@ -20,12 +20,9 @@ public class CalculateController {
     private CalculateService calulateServices;
 
     @GetMapping
-    public String calculate(@RequestParam(required = false) Double valueA, @RequestParam(required = false) Double valueB, @RequestHeader String tokenApiKey)
+    public String calculate(@RequestParam(required = false) Double valueA, @RequestParam(required = false) Double valueB)
             throws ValidationException, RandomPercentageClientException, JsonProcessingException {
-        log.info(String.format("Event: %s  {%s} + {%s}", "calculate" , valueA, valueB));
-        String response = calulateServices.calculate(valueA, valueB, tokenApiKey);
-        log.info(String.format("Event: %s - Response: %s", "calculate result: %s", response));
-        return response;
+        return calulateServices.calculate(valueA, valueB);
     }
 
 

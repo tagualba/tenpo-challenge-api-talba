@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import org.hibernate.annotations.Type;
 
 @Entity
 @Data
@@ -27,4 +26,5 @@ public class AuditHistoryPersistence {
 
     public AuditHistoryPersistence(){
     }
+
 }

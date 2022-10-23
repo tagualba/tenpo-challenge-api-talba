@@ -5,7 +5,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -19,9 +18,9 @@ public class ControllerHandlerException {
     @ExceptionHandler(NoHandlerFoundException.class)
     public ResponseEntity<ApiError> noHandlerFoundException(HttpServletRequest req, NoHandlerFoundException ex) {
         ApiError apiError = ApiError.builder()
-                .error("ROUTE_NOT_FOUND")
-                .message(String.format("Route %s not found", req.getRequestURI()))
-                .status(HttpStatus.NOT_FOUND.value())
+                .error(ErrorCode.ROUTE_NOT_FOUND.getName())
+                .message(String.format(ErrorCode.ROUTE_NOT_FOUND.getMessage(), req.getRequestURI()))
+                .status(ErrorCode.ROUTE_NOT_FOUND.getHttpStatus().value())
                 .build();
 
         log.error(String.format("Event: %s , %s %s", "noHandlerFoundException", ex.getMessage(), ex));
@@ -67,9 +66,9 @@ public class ControllerHandlerException {
     @ExceptionHandler(value = {Exception.class, RuntimeException.class})
     protected HttpEntity<ApiError> handleUnknownException(Exception ex) {
         ApiError apiError = ApiError.builder()
-                .error("INTERNAL_SERVER_ERROR")
+                .error(ErrorCode.INTERNAL_SERVER_ERROR.getName())
                 .message(ex.getMessage())
-                .status(HttpStatus.INTERNAL_SERVER_ERROR.value())
+                .status(ErrorCode.INTERNAL_SERVER_ERROR.getHttpStatus().value())
                 .build();
 
         log.error(String.format("Event: %s , %s %s", "handleRuntimeException", ex.getMessage(), ex));

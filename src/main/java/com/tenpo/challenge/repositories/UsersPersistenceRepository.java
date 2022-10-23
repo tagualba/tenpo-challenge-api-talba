@@ -8,7 +8,9 @@ import java.util.Optional;
 
 @Repository
 public interface UsersPersistenceRepository extends JpaRepository<UserPersistence, Long> {
+
     Optional<UserPersistence> findByEmail(String email);
 
     Optional<UserPersistence> findByLastTokenApi(String lastTokenApi);
+
 }

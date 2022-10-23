@@ -1,37 +1,37 @@
 spring:
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     open-in-view: false
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://ec2-34-200-205-45.compute-1.amazonaws.com:5432/d7ia6eote76mub?user=ifmxcefwbmoyrp&password=6342c1501bf280b449dc6fdf4d4011bb257f7c416222808759bcb53ea57d7539
-    username: ifmxcefwbmoyrp
-    password: 6342c1501bf280b449dc6fdf4d4011bb257f7c416222808759bcb53ea57d7539
+    url: ${DATASOURCE.URL}
+    username: ${DATASOURCE_USER}
+    password: ${DATASOURCE_PASS}
 
 jwt:
-  secret: LEKDLSKIEODPSOEIDK39
-  ttl: 3600000
+  secret: ${JWT_SECRET}
+  ttl: ${JWT_TTL}
 
 regex:
-  email: ^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$
-  password: ^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=.])(?=\S+$).{8,}$
+  email: ${REGEX_EMAIL}
+  password: ${REGEX_PASS}
 
 percentage-service:
   cache:
-    ttl: 1800000
-  read-timeout: 40
-  connection-timeout: 40
-  url: http://localhost:8080/tenpo/percentage
+    ttl: ${PERCENTAGE_SERVICE_CACHE_TTL}
+  read-timeout: ${PERCENTAGE_SERVICE_READ_TIMEOUT}
+  connection-timeout: ${PERCENTAGE_SERVICE_CONNECTION_TIMEOUT}
+  url: ${PERCENTAGE_SERVICE_URL}
 
 resilience4j:
   retry:
     instances:
       percentage:
-        maxRetryAttempts: 2
-        waitDuration: 1000
+        maxRetryAttempts: ${RETRY_MAX_ATTEMPTS}
+        waitDuration: ${RETRY_WAIT_DURATION}
         failAfterMaxAttempts: true
 
 history:
-  page-size: 10
+  page-size: ${HISTORY_PAGE_SIZE}

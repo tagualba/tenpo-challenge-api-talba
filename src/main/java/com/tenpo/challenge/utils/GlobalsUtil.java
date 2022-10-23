@@ -1,6 +1,7 @@
 package com.tenpo.challenge.utils;
 
 public class GlobalsUtil {
+
     public static void setOperation(String operation) {
         Globals.OPERATION.set(operation);
     }
@@ -12,4 +13,5 @@ public class GlobalsUtil {
     public static void setResponse(String response) {
         Globals.RESPONSE.set(response);
     }
+
 }

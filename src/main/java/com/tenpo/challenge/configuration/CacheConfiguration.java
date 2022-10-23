@@ -2,6 +2,7 @@ package com.tenpo.challenge.configuration;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.EnableCaching;
@@ -20,6 +21,8 @@ import java.util.Arrays;
 @EnableCaching
 @Configuration
 public class CacheConfiguration {
+
+
     private static final Logger logger = LoggerFactory.getLogger(CacheConfiguration.class);
 
     private DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
@@ -36,4 +39,5 @@ public class CacheConfiguration {
     public void reportCacheEvict() {
         logger.info("Clear Cache {}", dateTimeFormatter.format(LocalDateTime.now()));
     }
+
 }

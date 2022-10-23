@@ -4,6 +4,7 @@ import com.tenpo.challenge.exceptions.ValidationException;
 import com.tenpo.challenge.models.dtos.UserRequestDto;
 import com.tenpo.challenge.statics.ErrorCode;
 import io.micrometer.common.util.StringUtils;
+import lombok.AllArgsConstructor;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Component;
 import java.util.regex.Pattern;
 
 @Component
+@AllArgsConstructor
 public class UserValidator extends Validators{
     @Value("${regex.email}")
     private String regexEmail;
@@ -79,6 +81,5 @@ public class UserValidator extends Validators{
     private static String regexFail(String field) {
         return String.format("missing format in %s ", field);
     }
-
 
 }

@@ -19,4 +19,5 @@ public class CalculateValidator extends Validators {
             throw new ValidationException(ErrorCode.INVALID_DATA, propertiesFailMessage);
         }
     }
+
 }

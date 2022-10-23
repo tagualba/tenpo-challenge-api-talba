@@ -24,4 +24,5 @@ public class ValidationException extends Exception {
     public ErrorCode getValidationErrorCode() {
         return validationErrorCode;
     }
+
 }

@@ -19,4 +19,5 @@ public class HistoryResponseDto {
     private Integer page;
 
     private Integer totalPages;
+
 }

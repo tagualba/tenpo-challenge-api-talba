@@ -7,7 +7,6 @@ import com.tenpo.challenge.exceptions.ValidationException;
 import com.tenpo.challenge.models.dtos.UserRequestDto;
 import com.tenpo.challenge.models.dtos.UserResponseDto;
 import com.tenpo.challenge.services.UserService;
-import com.tenpo.challenge.utils.Globals;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,18 +26,12 @@ public class UserController {
     @PostMapping
     public UserResponseDto createUser(@RequestBody UserRequestDto request)
             throws ValidationException, JsonProcessingException {
-        log.info(String.format("Event: %s - Request: %s", "createUser", request.toString()));
-        UserResponseDto response = userService.createUser(request);
-        log.info(String.format("Event: %s - Response: %s", "createUser", response.toString()));
-        return response;
+        return userService.createUser(request);
     }
 
     @PostMapping("/login")
     public UserResponseDto login(@RequestBody UserRequestDto request)
             throws ValidationException, JsonProcessingException {
-        log.info(String.format("Event: %s - Request: %s", "createUser", request.toString()));
-        UserResponseDto response = userService.login(request);
-        log.info(String.format("Event: %s - Response: %s", "createUser", response.toString()));
-        return response;
+        return userService.login(request);
     }
 }

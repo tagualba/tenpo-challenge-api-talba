@@ -10,7 +10,11 @@ public enum ErrorCode {
     EXPIRED_TOKEN(1004, "Token Expired ", HttpStatus.UNAUTHORIZED),
     COMBINATION_FAIL(1005, "Invalid Combination", HttpStatus.NOT_FOUND),
 
-    EXTERNAL_CLIENT_ERROR(4001, "External services fail", HttpStatus.INTERNAL_SERVER_ERROR);
+    EXTERNAL_CLIENT_ERROR(4001, "External services fail", HttpStatus.INTERNAL_SERVER_ERROR),
+    ROUTE_NOT_FOUND(4004, "Route Not Found", HttpStatus.NOT_FOUND),
+
+    INTERNAL_SERVER_ERROR(5000, "Internal error", HttpStatus.INTERNAL_SERVER_ERROR);
+
     private final Integer code;
 
     private final String message;
@@ -21,15 +25,6 @@ public enum ErrorCode {
         this.code = code;
         this.message = message;
         this.httpStatus = httpStatus;
-    }
-
-    public static ErrorCode get(String name) {
-        for (ErrorCode errorCode : ErrorCode.values()) {
-            if (errorCode.name().equals(name)) {
-                return errorCode;
-            }
-        }
-        return null;
     }
 
     public Integer getCode() {
@@ -47,4 +42,5 @@ public enum ErrorCode {
     public String getName() {
         return this.name();
     }
+
 }

@@ -4,6 +4,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.impl.TextCodec;
 import jakarta.annotation.PostConstruct;
+import lombok.AllArgsConstructor;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -13,6 +14,7 @@ import java.util.Date;
 import java.util.Map;
 
 @Component
+@AllArgsConstructor
 public class JwtUtil {
 
     @Value("${jwt.secret}")
@@ -47,11 +49,4 @@ public class JwtUtil {
         }
     }
 
-    public String getEmailUserByToken(String token){
-        try {
-            return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody().getSubject();
-        }catch (Exception e) {
-            return Strings.EMPTY;
-        }
-    }
 }

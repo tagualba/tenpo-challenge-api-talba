@@ -12,4 +12,5 @@ public class RandomPercentageClientConfiguration {
     public RandomPercentageClient randomPercentageClient(RandomPercentageRestClient randomPercentageRestClient){
         return randomPercentageRestClient;
     }
+
 }

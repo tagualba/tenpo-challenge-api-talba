@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder(toBuilder = true)
 public class User {
+
     private Long id;
 
     private String name;
@@ -19,4 +20,5 @@ public class User {
     private String hashPassword;
 
     private String lastTokenApi;
+
 }

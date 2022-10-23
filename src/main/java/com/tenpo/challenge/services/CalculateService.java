@@ -22,21 +22,14 @@ public class CalculateService {
     @Autowired
     private RandomPercentageClient randomPercentageClient;
 
-    @Autowired
-    private UserService userService;
 
     @Autowired
     private JwtUtil jwtUtill;
 
-    public String calculate(Double valueA, Double valueB, String tokenApiKey) throws ValidationException, JsonProcessingException, RandomPercentageClientException {
+    public String calculate(Double valueA, Double valueB) throws ValidationException, JsonProcessingException, RandomPercentageClientException {
         CalculateValidator.validateValues(valueA, valueB);
         GlobalsUtil.setRequest(String.format("{valueA: %s, valueB: %s}", valueA, valueB));
         GlobalsUtil.setOperation(Operations.CALCULATE_PERCENTAGE.name());
-
-        if(!jwtUtill.validate(tokenApiKey))
-        {
-            throw new ValidationException(ErrorCode.INVALID_TOKEN);
-        }
 
         Integer percentage = getPercentage();
 
@@ -60,4 +53,5 @@ public class CalculateService {
             throw new RandomPercentageClientException(ErrorCode.EXTERNAL_CLIENT_ERROR, e.getMessage());
         }
     }
+
 }
