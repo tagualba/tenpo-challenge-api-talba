@@ -37,7 +37,7 @@ public class CacheConfiguration {
     @CacheEvict(allEntries = true, value = {"percentage-service"})
     @Scheduled(fixedDelayString = "${percentage-service.cache.ttl}")
     public void reportCacheEvict() {
-        logger.info("Clear Cache {}", dateTimeFormatter.format(LocalDateTime.now()));
+        logger.info("Clear Cache RELEASE {}", dateTimeFormatter.format(LocalDateTime.now()));
     }
 
 }

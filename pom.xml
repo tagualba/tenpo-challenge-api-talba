@@ -10,7 +10,8 @@
 	</parent>
 	<groupId>com.tenpo</groupId>
 	<artifactId>chalenge</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.1.0-SNAPSHOT</version>
+	<packaging>jar</packaging>
 	<name>chalenge</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
