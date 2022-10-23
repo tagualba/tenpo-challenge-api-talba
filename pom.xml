@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.tenpo</groupId>
 	<artifactId>challenge</artifactId>
-	<version>1.0-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<packaging>jar</packaging>
 	<name>challenge</name>
 	<description>Demo project for Spring Boot</description>
